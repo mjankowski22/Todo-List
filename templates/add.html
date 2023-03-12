@@ -1,0 +1,72 @@
+{% extends 'bootstrap/base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block styles %}
+{{ super() }}
+<link href="{{ url_for('static',filename='css/styles.css')}}" rel="stylesheet" type="text/css">
+
+
+
+{% endblock %}
+
+{% block title %}Todo List {% endblock %}
+
+{% block content %}
+
+
+<header>
+    <div id="head">
+        <a href="{{ url_for('month_down') }}">←</a>
+        <h1>{{ months[month_index] }}</h1><a href="{{ url_for('month_up') }}">→</a>
+    </div>
+</header>
+
+<table class="table table-bordered">
+    {% for i in range(0,5) %}
+    <tr>
+        {% for g in range(0,7) %}
+        {% if i*7+g+1 > list_of_months[months[month_index]] %}
+        {{ break }}
+        {% endif %}
+        {% for day in days %}
+        {% if day.month == months[month_index] and day.number == i*7+g+1 %}
+        <td>
+            {{ day.number }}
+            {% if day.todo!=[] %}
+            <a href="{{ url_for('list',number_x=day.number, month_x=day.month) }}" style="color:red;">⬤</a>
+            {% else %}
+            <a href="{{ url_for('list',number_x=day.number, month_x=day.month) }}" style="color:white;">⬤</a>
+            {% endif %}
+
+        </td>
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+
+{% if flag %}
+{% for day in days %}
+{% if day.number==number and day.month==month %}
+{% if day.todo!=[] %}
+<h2>Todo List ({{day.number}}. {{day.month}}): </h2>
+<ol>
+    {% for item in day.todo %}
+    <li>{{ item }}</li>
+    {% endfor %}
+</ol>
+{{ break }}
+{% else %}
+
+{{ break }}
+{% endif %}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{{ wtf.quick_form(form, novalidate=True) }}
+
+{% endblock %}

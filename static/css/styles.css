@@ -1,0 +1,42 @@
+body {
+	margin: 0;
+	background-color: #333;
+	color: white;
+	font-size: 30px;
+}
+header {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	padding: 10px;
+}
+.table {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	clear: both;
+}
+h2 {
+	margin-top: 60px;
+	margin-left: 10%;
+	font-size: 45px;
+}
+ol {
+	margin-top: 20px;
+	margin-left: 15%;
+}
+#head {
+	margin-left: auto;
+	margin-right: auto;
+}
+.add {
+	margin-left: 10%;
+}
+form {
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.a:hover {
+	text-decoration: none;
+}
